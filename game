@@ -1,1 +1,28 @@
+// first part i have to manually edit and insert code each time
+package hwproject;
+import java.awt.event.*;
+import java.util.Random;
+import javax.swing.*;
 
+public class Hwproject {
+final static int target = 2048;
+
+    static int highest;
+    static int score;
+    private Random rand = new Random();
+
+
+//    setPreferredSize(new Dimension(900, 700));
+    private int side = 4;
+        void startGame() {
+        }
+                
+    public static void main(String[] args) {
+        System.out.println("press the 'w' key to move up");
+        System.out.println("press the 's' key to move down");
+        System.out.println("press the 'd' key to move right");
+        System.out.println("press the 'a' key to move left");
+    
+    }
+    
+}
