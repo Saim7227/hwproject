@@ -1,28 +1,51 @@
-// first part i have to manually edit and insert code each time
-package hwproject;
+// restarted code following a tutorial on 2048 game
+
+
+
+
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
-
-public class Hwproject {
-final static int target = 2048;
-
+ 
+public class Game2048 extends JPanel {
+ 
+    enum State {
+        start, won, running, over
+    }
+ 
+    final Color[] colorTable = {
+        new Color(0x701710), new Color(0xFFE4C3), new Color(0xfff4d3),
+        new Color(0xffdac3), new Color(0xe7b08e), new Color(0xe7bf8e),
+        new Color(0xffc4c3), new Color(0xE7948e), new Color(0xbe7e56),
+        new Color(0xbe5e56), new Color(0x9c3931), new Color(0x701710)};
+ 
+    final static int target = 2048;
+ 
     static int highest;
     static int score;
+ 
+    private Color gridColor = new Color(0xBBADA0);
+    private Color emptyColor = new Color(0xCDC1B4);
+    private Color startColor = new Color(0xFFEBCD);
+ 
     private Random rand = new Random();
-
-
-//    setPreferredSize(new Dimension(900, 700));
+ 
+    private Tile[][] tiles;
     private int side = 4;
-        void startGame() {
-        }
-                
-    public static void main(String[] args) {
-        System.out.println("press the 'w' key to move up");
-        System.out.println("press the 's' key to move down");
-        System.out.println("press the 'd' key to move right");
-        System.out.println("press the 'a' key to move left");
-    
-    }
-    
-}
+    private State gamestate = State.start;
+    private boolean checkingAvailableMoves;
+ 
+    public Game2048() {
+        setPreferredSize(new Dimension(900, 700));
+        setBackground(new Color(0xFAF8EF));
+        setFont(new Font("SansSerif", Font.BOLD, 48));
+        setFocusable(true);
+ 
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                startGame();
+                repaint();
+            }
+        });
